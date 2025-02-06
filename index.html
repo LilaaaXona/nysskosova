@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        button {
+            color: blue;
+            width: 40px;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        Hello i am lilaa
-    </p>
+    <p>Hello, I am Lilaa</p>
+    
+    <button id="hi" onclick="this.style.color = this.style.color === 'red' ? 'blue' : 'red';">
+        Hi
+    </button>
+    
+    <button id="bye" onclick="this.style.color = this.style.color === 'red' ? 'blue' : 'red';">
+        Bye
+    </button>
 </body>
 </html>
