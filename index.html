@@ -3,23 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Persistent Buttons</title>
     <style>
         button {
-            color: blue;
             width: 40px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <p>Hello, I am Lilaa</p>
-    
-    <button id="hi" onclick="this.style.color = this.style.color === 'red' ? 'blue' : 'red';">
-        Hi
-    </button>
-    
-    <button id="bye" onclick="this.style.color = this.style.color === 'red' ? 'blue' : 'red';">
-        Bye
-    </button>
+
+    <button id="hi">Hi</button>
+    <button id="bye">Bye</button>
+
+    <script>
+        const buttons = document.querySelectorAll("button");
+
+        // Fetch button state from backend
+        async function loadButtons() {
+            const res = await fetch("http://localhost:3000/buttons");
+            const data = await res.json();
+
+            data.forEach(btn => {
+                const button = document.getElementById(btn.name);
+                if (button) button.style.color = btn.color;
+            });
+        }
+
+        // Update button state in backend
+        async function updateButton(name, color) {
+            await fetch("http://localhost:3000/buttons", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, color })
+            });
+        }
+
+        // Add event listeners to buttons
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const newColor = button.style.color === "red" ? "blue" : "red";
+                button.style.color = newColor;
+                updateButton(button.id, newColor);
+            });
+        });
+
+        // Load initial button states
+        loadButtons();
+    </script>
 </body>
 </html>
