@@ -22,7 +22,7 @@
 
         // Fetch button state from backend
         async function loadButtons() {
-            const res = await fetch("http://localhost:3000/buttons");
+            const res = await fetch("https://nysskosova.onrender.com/buttons"); // Replace with your Render URL
             const data = await res.json();
 
             data.forEach(btn => {
@@ -33,7 +33,7 @@
 
         // Update button state in backend
         async function updateButton(name, color) {
-            await fetch("http://localhost:3000/buttons", {
+            await fetch("https://nysskosova.onrender.com/buttons", { // Replace with your Render URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, color })
