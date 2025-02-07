@@ -3,7 +3,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 const cors = require("cors");
 
-app.use(cors({ origin: "*" })); // Enable CORS to allow requests from the frontend
+const corsOptions = {
+    origin: "https://nysskosova.netlify.app", // Allow only Netlify frontend
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type",
+};
+
+app.use(cors(corsOptions)); // Use CORS with custom options
+
 app.use(express.json()); // Parse JSON data from requests
 
 // Temporary storage for button states (replace with a database in production)
