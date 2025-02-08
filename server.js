@@ -1,7 +1,7 @@
 require("dotenv").config(); // Load environment variables
 // Import the Express.js framework so we can build a web server
 const express = require("express");
-
+const mongoose = require("mongoose");
 // Create an Express app (our web server)
 const app = express();
 
