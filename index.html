@@ -44,6 +44,7 @@
         async function loadButtons() {
             const res = await fetch("https://nysskosova.onrender.com/buttons"); // Replace with your Render URL
             const data = await res.json();
+            
 
             data.forEach(btn => {
                 const button = document.getElementById(btn.name);
